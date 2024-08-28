@@ -35,7 +35,12 @@ const createUser = asyncHandler(async (req, res) => {
     try {
         await newUser.save();
         createToken(res, newUser._id);
-        res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({
+            _id: newUser._id,
+            username: newUser.username,
+            email: newUser.email,
+            isAdmin: newUser.isAdmin,
+          });
     } catch (error) {
         res.status(400);
         throw new Error('User creation failed');
@@ -54,7 +59,12 @@ const loginUser = asyncHandler(async (req, res) => {
         );
         if (isPasswordMatch) {
             createToken(res, existingUser._id);
-            res.status(201).json({ message: 'Login successful' });
+            res.status(201).json({
+                _id: existingUser._id,
+                username: existingUser.username,
+                email: existingUser.email,
+                isAdmin: existingUser.isAdmin,
+              });
         } else {
             res.status(401);
             throw new Error('Invalid credentials');
