@@ -101,7 +101,7 @@ const Navigation = () => {
                     className="flex items-center text-gray-800 focus:outline-none"
                 >
                     {userInfo ? (
-                        <span className="text-white">{userInfo.username}</span>
+                        <span className="text-white">{userInfo.username.split(' ')[0]}</span>
                     ) : (
                         <></>
                     )}
@@ -155,7 +155,7 @@ const Navigation = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/admin/category"
+                                        to="/admin/categorylist"
                                         className="block px-4 py-2 hover:bg-gray-100"
                                     >
                                         Category
@@ -171,7 +171,8 @@ const Navigation = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/admin/users"
+                                        onClick={toggleDropdown}
+                                        to="/admin/userslist"
                                         className="block px-4 py-2 hover:bg-gray-100"
                                     >
                                         Users
@@ -182,7 +183,8 @@ const Navigation = () => {
                         )}
                         <li>
                                     <Link
-                                        to="/admin/profile"
+                                        onClick={toggleDropdown}
+                                        to="/profile"
                                         className="block px-4 py-2 hover:bg-gray-100"
                                     >
                                         Profile
